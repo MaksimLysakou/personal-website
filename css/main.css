@@ -4298,3 +4298,46 @@ input[name=carousel] {
   background-color: rgba(20, 28, 58, .08);
   color: #141c3a
 }
+
+.logo-emoji {
+  height: 72px;
+  font-size: 64px;
+  line-height: 72px;
+  display: inline-block
+}
+
+.logo-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 16px;
+  background-color: #0e62e3;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center
+}
+
+.logo-icon svg {
+  width: 40px;
+  height: 40px
+}
+
+.section.startups .startup-grid .columns.level {
+  align-items: stretch
+}
+
+.section.startups .startup-grid .column.level-item {
+  display: flex;
+  align-items: stretch
+}
+
+.section.startups .startup-grid .column.level-item .box {
+  width: 100%;
+  display: flex;
+  flex-direction: column
+}
+
+.section.startups .startup-grid .box .tag,
+.section.startups .startup-grid .box a.link {
+  margin-top: auto
+}

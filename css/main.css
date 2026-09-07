@@ -705,32 +705,19 @@ h4 {
 .project-card:hover .crypto-visual > img {
   transform: translateY(-8px) rotate(8deg);
 }
-.founder-visual {
-  background: #e5e9f6;
-  color: #333f6c;
+.birds-visual {
+  background: #e6eadb;
+  color: #3f5945;
 }
-.flow-symbol {
-  display: flex;
+.bird-symbol {
   position: absolute;
-  left: calc(50% - 41px);
-  top: 61px;
-  align-items: end;
-  gap: 4px;
-  transform: skew(-15deg);
+  width: 140px;
+  height: 110px;
+  left: calc(50% - 70px);
+  top: 46px;
   transition: transform 0.5s;
 }
-.flow-symbol span {
-  width: 23px;
-  height: 44px;
-  background: #566ba5;
-}
-.flow-symbol span:nth-child(2) {
-  height: 65px;
-}
-.flow-symbol span:nth-child(3) {
-  height: 84px;
-}
-.founder-wordmark {
+.birds-wordmark {
   position: absolute;
   top: 167px;
   left: 0;
@@ -740,7 +727,7 @@ h4 {
   letter-spacing: -1px;
   font-weight: 550;
 }
-.founder-wordmark > span {
+.birds-wordmark > span {
   font-size: 20px;
   vertical-align: top;
 }
@@ -750,8 +737,8 @@ h4 {
   bottom: 16px;
   font-size: 20px;
 }
-.project-card:hover .flow-symbol {
-  transform: skew(-15deg) translateY(-7px);
+.project-card:hover .bird-symbol {
+  transform: translateY(-7px) rotate(-4deg);
 }
 .solas-visual {
   background: #e9e4d8;
@@ -1248,12 +1235,12 @@ h4 {
   .project-visual {
     height: 215px;
   }
-  .founder-wordmark {
+  .birds-wordmark {
     font-size: 23px;
     top: 145px;
   }
-  .flow-symbol {
-    top: 40px;
+  .bird-symbol {
+    top: 30px;
   }
   .solas-moon {
     top: 29px;
@@ -1566,12 +1553,12 @@ h4 {
     left: 20px;
     font-size: 10px;
   }
-  .founder-wordmark {
+  .birds-wordmark {
     top: 174px;
     font-size: 32px;
   }
-  .flow-symbol {
-    top: 65px;
+  .bird-symbol {
+    top: 56px;
   }
   .solas-moon {
     top: 39px;

@@ -358,3 +358,17 @@
     font-size: 14px;
   }
 }
+
+.article-body .article-figure {
+  margin-block: 40px;
+}
+.article-body .article-figure img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+@media (max-width: 600px) {
+  .article-body .article-figure {
+    margin-block: 30px;
+  }
+}

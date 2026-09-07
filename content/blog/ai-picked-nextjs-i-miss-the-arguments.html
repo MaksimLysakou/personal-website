@@ -1,0 +1,418 @@
+<article
+  data-title="AI Picked Next.js. I Miss the Arguments."
+  data-description="Why Next.js and Tailwind keep turning up in AI-built websites, what that shortcut gives us, and why I’m a little nostalgic for the framework wars."
+  data-date="2026-09-07"
+  data-status="published"
+  data-tags="AI, Web development, Opinion"
+  lang="en"
+>
+  <p>
+    There was a time when choosing a web stack meant choosing a side. Angular or
+    React. Node.js or Java. Someone had a benchmark. Someone else explained why
+    the benchmark was meaningless. A third person suggested rewriting everything
+    in a language nobody on the team knew.
+  </p>
+  <p>It was exhausting. It was ridiculous. It had a certain romance.</p>
+  <p>
+    Now imagine asking an AI builder for a website. Before you’ve finished
+    thinking about the audience, there’s a Next.js app, a handful of Tailwind
+    classes, and a very confident hero section.
+  </p>
+  <p>
+    The architecture meeting has been replaced by an autocomplete. And the
+    annoying part is: the result might be pretty good.
+  </p>
+
+  <figure class="article-figure">
+    <img
+      src="/img/blog/ai-picked-nextjs/01-the-default.webp"
+      srcset="
+        /img/blog/ai-picked-nextjs/01-the-default-small.webp  600w,
+        /img/blog/ai-picked-nextjs/01-the-default.webp       1200w
+      "
+      sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 800px) calc(100vw - 48px), (max-width: 992px) calc(100vw - 72px), 920px"
+      width="1200"
+      height="800"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+      alt="A robot waiter serves a Next.js and Tailwind sandwich to a developer who is still reading the menu."
+    />
+    <figcaption>
+      “I haven’t ordered yet.” “You’ll love the defaults.”
+    </figcaption>
+  </figure>
+
+  <h2>The default wasn’t an election</h2>
+  <p>
+    First, a small correction to the premise: there’s no universal law that
+    neural networks prefer Next.js and Tailwind. An assistant inside an Angular
+    repository has different context from a website generator starting an empty
+    project. The model, its instructions, the starter, and the tools around it
+    all matter.
+  </p>
+  <p>
+    Sometimes the explanation is refreshingly literal.
+    <a href="https://v0.app/docs/design-systems-2"
+      >v0’s documentation says new chats start with Next.js, shadcn/ui, and
+      Tailwind CSS</a
+    >. In that case, the stack isn’t a spontaneous architectural insight. It’s
+    already in the room.
+  </p>
+  <p>
+    The next layer reinforces it:
+    <a href="https://nextjs.org/docs/app/getting-started/installation"
+      >the recommended Next.js setup includes Tailwind</a
+    >, alongside TypeScript and the App Router. Choosing one tool can quietly
+    choose several others for you.
+  </p>
+  <p>
+    It’s tempting to explain the whole thing with “there must be loads of this
+    in the training data.” That’s a plausible influence, but I don’t know the
+    training mix of every model, and neither does a screenshot of generated
+    code.
+  </p>
+  <p>
+    My simpler explanation: familiar conventions, compatible components, and
+    ready-made starters reduce the number of decisions between a prompt and a
+    working preview. The product’s defaults can explain a lot before we start
+    psychoanalysing the model.
+  </p>
+
+  <figure class="article-figure">
+    <img
+      src="/img/blog/ai-picked-nextjs/02-the-paved-road.webp"
+      srcset="
+        /img/blog/ai-picked-nextjs/02-the-paved-road-small.webp  600w,
+        /img/blog/ai-picked-nextjs/02-the-paved-road.webp       1200w
+      "
+      sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 800px) calc(100vw - 48px), (max-width: 992px) calc(100vw - 72px), 920px"
+      width="1200"
+      height="800"
+      loading="lazy"
+      decoding="async"
+      alt="A robot assembles documentation, templates and UI components on a conveyor belt leading to a browser preview."
+    />
+    <figcaption>
+      Less divine revelation. More excellent distribution.
+    </figcaption>
+  </figure>
+
+  <h2>Tailwind keeps the styling close</h2>
+  <p>
+    Tailwind is particularly convenient for producing a chunk of UI in one go.
+    Its
+    <a href="https://tailwindcss.com/docs/styling-with-utility-classes"
+      >utility classes put styling decisions directly in the markup</a
+    >: spacing, colours, layout, responsive behaviour. A component can carry
+    much of its visual recipe with it.
+  </p>
+  <pre><code class="language-jsx">&lt;section className="grid gap-6 rounded-xl p-8 md:grid-cols-2"&gt;
+  {/* Layout, spacing, and a breakpoint, all within reach. */}
+&lt;/section&gt;</code></pre>
+  <p>
+    For an assistant editing that component, this can mean less hunting through
+    stylesheets to find the rule behind a button. That’s an ergonomic advantage,
+    not proof that a model has better taste when it sees
+    <code>rounded-xl</code>.
+  </p>
+  <p>
+    Add
+    <a href="https://ui.shadcn.com/docs"
+      >shadcn/ui’s editable component source</a
+    >, and there’s more concrete code to work with. The assistant can adapt an
+    existing component instead of inventing every interaction from a blank file.
+    You still need to check what it changed, including keyboard behaviour and
+    accessibility.
+  </p>
+
+  <figure class="article-figure">
+    <img
+      src="/img/blog/ai-picked-nextjs/03-component-recipe.webp"
+      srcset="
+        /img/blog/ai-picked-nextjs/03-component-recipe-small.webp  600w,
+        /img/blog/ai-picked-nextjs/03-component-recipe.webp       1200w
+      "
+      sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 800px) calc(100vw - 48px), (max-width: 992px) calc(100vw - 72px), 920px"
+      width="1200"
+      height="800"
+      loading="lazy"
+      decoding="async"
+      alt="An exploded UI card sits beside its illustrated recipe while a hand adjusts the components with a screwdriver."
+    />
+    <figcaption>
+      No expedition to find out which stylesheet owns the padding.
+    </figcaption>
+  </figure>
+
+  <h2>The good part is actually good</h2>
+  <p>
+    A sensible default gets you past a surprisingly expensive stage of a
+    project: agreeing how to begin.
+  </p>
+  <p>
+    For a React-based product that needs several routes, interactive screens,
+    and server-side features, Next.js can give the work a useful structure.
+    Tailwind can make visual iteration quick. A shared component foundation can
+    keep the first five screens from looking like five separate companies.
+  </p>
+  <p>
+    The benefit is especially clear when you’re testing an idea. A working
+    screen lets someone say, “Actually, I wouldn’t use this,” while changing
+    course is still cheap. That is much more useful than a beautifully argued
+    stack decision attached to a product nobody has seen.
+  </p>
+  <p>
+    There’s also less ceremony around ordinary work. A settings page can just be
+    a settings page. It doesn’t have to become a referendum on the future of
+    frontend engineering.
+  </p>
+  <p>I can appreciate that. Even if I would have enjoyed the referendum.</p>
+
+  <figure class="article-figure">
+    <img
+      src="/img/blog/ai-picked-nextjs/04-working-preview.webp"
+      srcset="
+        /img/blog/ai-picked-nextjs/04-working-preview-small.webp  600w,
+        /img/blog/ai-picked-nextjs/04-working-preview.webp       1200w
+      "
+      sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 800px) calc(100vw - 48px), (max-width: 992px) calc(100vw - 72px), 920px"
+      width="1200"
+      height="800"
+      loading="lazy"
+      decoding="async"
+      alt="A developer and a customer discuss a working browser preview and add an orange sticky note."
+    />
+    <figcaption>
+      The first preview is where the interesting conversation can finally start.
+    </figcaption>
+  </figure>
+
+  <h2>The invoice arrives later</h2>
+  <p>
+    The trouble starts when “easy to generate” becomes “right for this project”
+    without anyone checking the gap between the two.
+  </p>
+  <p>
+    A three-page brochure and a collaborative dashboard are both “websites” in a
+    prompt. They have very different needs. A scaffold that fits the dashboard
+    may give the brochure a build process and dependency maintenance it didn’t
+    need.
+  </p>
+  <p>
+    To be fair, Next.js supports
+    <a href="https://nextjs.org/docs/app/guides/static-exports"
+      >static HTML exports</a
+    >. It doesn’t automatically mean running a server for a page of text. Still,
+    the fact that a framework <em>can</em> do a small job doesn’t settle whether
+    you want that framework in the project.
+  </p>
+  <p>
+    For an app that uses server features, you also inherit decisions about what
+    runs where, how data reaches the browser, and how deployment works. Those
+    decisions may be worth it. They don’t stop existing because an assistant
+    generated the files.
+  </p>
+  <p>
+    Tailwind has its own small traps. Repeating nearly identical class strings
+    can become a maintenance problem. And an assistant can generate a
+    plausible-looking dynamic class that never produces CSS:
+    <a href="https://tailwindcss.com/docs/detecting-classes-in-source-files"
+      >Tailwind needs complete class names it can detect in source</a
+    >. A convincing preview is not a substitute for understanding the build.
+  </p>
+  <blockquote>
+    <p>
+      The assistant can choose the stack in seconds. Your team may live with it
+      for years.
+    </p>
+  </blockquote>
+
+  <figure class="article-figure">
+    <img
+      src="/img/blog/ai-picked-nextjs/05-below-the-demo.webp"
+      srcset="
+        /img/blog/ai-picked-nextjs/05-below-the-demo-small.webp  600w,
+        /img/blog/ai-picked-nextjs/05-below-the-demo.webp       1200w
+      "
+      sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 800px) calc(100vw - 48px), (max-width: 992px) calc(100vw - 72px), 920px"
+      width="1200"
+      height="800"
+      loading="lazy"
+      decoding="async"
+      alt="A polished browser preview sits on an iceberg above submerged gears, cables and a security shield."
+    />
+    <figcaption>
+      The rest of the project doesn’t fit in the screenshot.
+    </figcaption>
+  </figure>
+
+  <h2>Somehow, every product has the same sofa</h2>
+  <p>
+    Then there’s the visual déjà vu: the enormous headline, the soft gradient,
+    the three cards, the reassuring little badge. You know the apartment. You’ve
+    seen this sofa before.
+  </p>
+  <p>
+    Purple even has an apology. Tailwind CSS co-creator Adam Wathan
+    <a href="https://x.com/adamwathan/status/1953510802159219096"
+      >joked that his choice of <code>bg-indigo-500</code> for Tailwind UI buttons
+      had turned AI-generated interfaces indigo</a
+    >. One button colour, an unexpectedly long shadow.
+  </p>
+  <p>
+    The implied explanation is that examples become training material, and
+    their design choices become the next generation’s defaults. It’s a
+    memorable hypothesis, delivered as a joke. It doesn’t establish why any
+    particular model produces purple gradients.
+  </p>
+  <p>
+    The
+    <a href="https://almanac.httparchive.org/en/2025/generative-ai#ai-colors"
+      >2025 Web Almanac’s analysis of AI colours</a
+    > adds some measurements to the story. Selected purple
+    indicators didn’t surge within the Tailwind-site sample, though their
+    presence grew across the wider web alongside Tailwind. Gradients showed no
+    statistically significant increase either. The colour analysis tracked CSS
+    variables, so it couldn’t capture every implementation.
+  </p>
+  <p>
+    The purple sofa is a recognisable joke, not an AI detector. Repeated
+    examples and vague design briefs deserve scrutiny; a universal machine
+    preference for purple remains a much bigger claim.
+  </p>
+  <p>
+    A default can save you from a blank page. It can also make it easy to stop
+    asking what should be different about <em>this</em> page: the audience, the
+    content, the rhythm, the personality.
+  </p>
+  <p>At some point, somebody has to pick the sofa.</p>
+
+  <figure class="article-figure">
+    <img
+      src="/img/blog/ai-picked-nextjs/06-the-purple-sofa.webp"
+      srcset="
+        /img/blog/ai-picked-nextjs/06-the-purple-sofa-small.webp  600w,
+        /img/blog/ai-picked-nextjs/06-the-purple-sofa.webp       1200w
+      "
+      sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 800px) calc(100vw - 48px), (max-width: 992px) calc(100vw - 72px), 920px"
+      width="1200"
+      height="800"
+      loading="lazy"
+      decoding="async"
+      alt="Three browser windows contain identical purple sofas while a robot delivers another matching sofa."
+    />
+    <figcaption>
+      “Make it unique.” “Of course. I’ve changed the accent colour.”
+    </figcaption>
+  </figure>
+
+  <h2>I miss the arguments a little</h2>
+  <p>
+    Angular versus React. Node.js versus Java. Yes, Node.js is a runtime and
+    Java is a language. Thank you. You have successfully recreated the opening
+    comment.
+  </p>
+  <p>
+    Those debates haven’t disappeared. But in the prompt-to-preview workflow,
+    they can feel strangely far away. The choice arrives already made, wrapped
+    in a successful build.
+  </p>
+  <p>
+    I don’t miss the contempt, or the belief that someone’s framework preference
+    was a diagnosis. I miss the part where people cared enough to explain what
+    they wanted from their tools.
+  </p>
+  <p>
+    The useful arguments were about structure versus flexibility, a shared
+    language across the stack, the libraries a team trusted, or the systems it
+    already knew how to operate. Underneath the tribal shouting, there were real
+    constraints trying to get a word in.
+  </p>
+  <p>
+    Even changing your mind meant something. You had to understand the other
+    person’s argument well enough to let it annoy you productively.
+  </p>
+  <p>
+    A generated starter doesn’t ask you to defend a position. That can be a
+    relief. It can also let an important decision slip past without becoming a
+    conversation at all.
+  </p>
+
+  <figure class="article-figure">
+    <img
+      src="/img/blog/ai-picked-nextjs/07-framework-fight-club.webp"
+      srcset="
+        /img/blog/ai-picked-nextjs/07-framework-fight-club-small.webp  600w,
+        /img/blog/ai-picked-nextjs/07-framework-fight-club.webp       1200w
+      "
+      sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 800px) calc(100vw - 48px), (max-width: 992px) calc(100vw - 72px), 920px"
+      width="1200"
+      height="800"
+      loading="lazy"
+      decoding="async"
+      alt="Two developers share coffee beneath vintage boxing posters for Angular versus React and Node.js versus Java."
+    />
+    <figcaption>
+      We disagreed on everything except the need for another comment.
+    </figcaption>
+  </figure>
+
+  <h2>Keep the shortcut. Make the choice.</h2>
+  <p>
+    I’m happy to use Next.js and Tailwind when they fit. I’d just like the fit
+    to be part of the brief.
+  </p>
+  <p>
+    Before asking an assistant to build a website, give it the boring details:
+    who will maintain it, where it will run, how the content changes, and which
+    parts actually need to be interactive. If there’s an existing stack, say so.
+  </p>
+  <p>For a small site, that might sound like this:</p>
+  <pre><code>Build a personal site with a blog.
+The articles are HTML files. Hosting serves static files.
+Keep browser JavaScript limited to the interactions that need it.
+Before adding a framework, explain which requirement it solves.</code></pre>
+  <p>
+    That’s close to the setup behind this blog: HTML articles, ordinary CSS, and
+    a small Python build step. It suits the job. A different product could
+    justify a very different answer, including Next.js.
+  </p>
+  <p>
+    You can also ask the assistant to compare its first choice with a simpler
+    alternative. Not a twenty-page framework beauty contest. A few honest
+    sentences about what you gain, what you take on, and who has to maintain it.
+  </p>
+
+  <figure class="article-figure">
+    <img
+      src="/img/blog/ai-picked-nextjs/08-choose-the-route.webp"
+      srcset="
+        /img/blog/ai-picked-nextjs/08-choose-the-route-small.webp  600w,
+        /img/blog/ai-picked-nextjs/08-choose-the-route.webp       1200w
+      "
+      sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 800px) calc(100vw - 48px), (max-width: 992px) calc(100vw - 72px), 920px"
+      width="1200"
+      height="800"
+      loading="lazy"
+      decoding="async"
+      alt="A developer drives an orange convertible toward a fork in the road while a robot navigator reads a paper map."
+    />
+    <figcaption>
+      Convenience is welcome. The steering wheel stays with us.
+    </figcaption>
+  </figure>
+
+  <p>
+    I don’t need the framework wars back in full. The internet has enough people
+    being confidently unpleasant about brackets.
+  </p>
+  <p>
+    But I’d like to keep a little of that old curiosity. A willingness to ask
+    why this tool, for this project, with these people.
+  </p>
+  <p>
+    Let the assistant save us the typing. We can still have an opinion before it
+    runs <code>npm install</code>.
+  </p>
+</article>

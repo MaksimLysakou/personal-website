@@ -1,0 +1,10 @@
+{
+  "tool": "built-in image_gen",
+  "article": "ai-picked-nextjs-i-miss-the-arguments",
+  "prompts": [
+    {
+      "id": "01-the-default",
+      "prompt": "Use case: illustration-story. Create one polished editorial illustration for an English essay called 'AI Picked Next.js. I Miss the Arguments.' Wide landscape 3:2. A charming small retro robot waiter has already placed a plate holding a browser-window sandwich before a bemused adult developer seated at a tiny cafe table, while the developer still holds a closed menu. The food has two small readable paper flags, exactly 'Next.js' and 'Tailwind'. Warm hand-drawn ink contours, flat gouache shapes and fine risograph grain on warm ivory paper, dry understated humor, restrained burnt orange, sage green and charcoal palette. Sophisticated technology magazine illustration, not corporate vector stock art, no 3D, no photorealism. Simple clear silhouettes, balanced composition, generous breathing room, minimal background. No additional text, no watermark, no border. Image for article cover and first figure."
+    }
+  ]
+}

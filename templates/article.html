@@ -1,0 +1,25 @@
+<article class="article-page container">
+  <nav class="article-breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span aria-hidden="true">/</span
+    ><a href="/blog/">Blog</a>
+  </nav>
+  <header class="article-header">
+    {{preview_notice}}
+    <div class="article-topics">{{tags}}</div>
+    <h1>{{title}}</h1>
+    <p class="blog-lead">{{description}}</p>
+    <div class="article-byline">
+      <a href="/#about">Maksim Lysakou</a>
+      <time datetime="{{date}}">{{display_date}}</time>
+      <span>{{reading_time}} min read</span>
+      {{updated}}
+    </div>
+  </header>
+  <div class="article-body">{{body}}</div>
+  <footer class="article-end">
+    <a class="text-link" href="/blog/">← All articles</a>
+    <a class="text-link" href="mailto:maksim.lysakou@gmail.com"
+      >Discuss this article ↗</a
+    >
+  </footer>
+</article>

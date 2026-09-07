@@ -48,36 +48,43 @@ if ("IntersectionObserver" in window && !reducedMotion.matches) {
   });
 }
 
-const testimonials = Array.from(
-  document.querySelectorAll("[data-testimonial]"),
-);
-const content = document.querySelector("#testimonials-content");
-let activeTestimonial = 0;
-function showTestimonial(index) {
-  activeTestimonial = (index + testimonials.length) % testimonials.length;
-  testimonials.forEach((testimonial, i) => {
-    testimonial.hidden = i !== activeTestimonial;
-  });
-  document.querySelector("#testimonial-index").textContent = String(
-    activeTestimonial + 1,
-  ).padStart(2, "0");
+if (document.querySelector("#testimonials-content")) {
+  const testimonials = Array.from(
+    document.querySelectorAll("[data-testimonial]"),
+  );
+  const content = document.querySelector("#testimonials-content");
+  let activeTestimonial = 0;
+  function showTestimonial(index) {
+    activeTestimonial = (index + testimonials.length) % testimonials.length;
+    testimonials.forEach((testimonial, i) => {
+      testimonial.hidden = i !== activeTestimonial;
+    });
+    document.querySelector("#testimonial-index").textContent = String(
+      activeTestimonial + 1,
+    ).padStart(2, "0");
+  }
+  content.classList.add("carousel-active");
+  content.setAttribute("aria-live", "polite");
+  content.setAttribute("aria-atomic", "true");
+  document.querySelector(".testimonial-controls").hidden = false;
+  document
+    .querySelector("#previous-testimonial")
+    .addEventListener("click", () => showTestimonial(activeTestimonial - 1));
+  document
+    .querySelector("#next-testimonial")
+    .addEventListener("click", () => showTestimonial(activeTestimonial + 1));
+  showTestimonial(0);
 }
-content.classList.add("carousel-active");
-content.setAttribute("aria-live", "polite");
-content.setAttribute("aria-atomic", "true");
-document.querySelector(".testimonial-controls").hidden = false;
-document
-  .querySelector("#previous-testimonial")
-  .addEventListener("click", () => showTestimonial(activeTestimonial - 1));
-document
-  .querySelector("#next-testimonial")
-  .addEventListener("click", () => showTestimonial(activeTestimonial + 1));
-showTestimonial(0);
 
 // Keep the page functional even if WebGL or the optional scene cannot load.
 let heroRequested = false;
 function loadHero() {
-  if (mobileViewport.matches || heroRequested) return;
+  if (
+    !document.querySelector("#hero-canvas") ||
+    mobileViewport.matches ||
+    heroRequested
+  )
+    return;
   heroRequested = true;
   import("./hero.js")
     .then(({ initHero }) => {

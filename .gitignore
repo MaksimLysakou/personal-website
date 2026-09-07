@@ -1,3 +1,7 @@
 # Local browser verification artifacts
 .playwright-cli/
 output/playwright/
+
+# Generated site and Python caches
+_site/
+__pycache__/

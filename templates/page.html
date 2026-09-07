@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="{{lang}}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{title}}</title>
+    <meta name="description" content="{{description}}" />
+    <meta name="robots" content="{{robots}}" />
+    <meta name="theme-color" content="#f6f5f1" />
+    <link rel="canonical" href="{{canonical}}" />
+    <meta property="og:site_name" content="Maksim Lysakou" />
+    <meta property="og:type" content="{{og_type}}" />
+    <meta property="og:title" content="{{title}}" />
+    <meta property="og:description" content="{{description}}" />
+    <meta property="og:url" content="{{canonical}}" />
+    {{article_meta}}
+    <link rel="icon" href="/img/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/blog.css" />
+    <script src="/js/main.js" defer></script>
+    <script type="application/ld+json">
+      {{structured_data}}
+    </script>
+  </head>
+  <body class="blog-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    {{header}}
+    <main id="main">{{content}}</main>
+    {{footer}}
+  </body>
+</html>

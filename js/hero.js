@@ -94,6 +94,7 @@ export function initHero(reducedMotion) {
   const render = () => renderer.render(scene, camera);
   function resize() {
     const { width, height } = host.getBoundingClientRect();
+    if (!width || !height) return;
     renderer.setSize(width, height, false);
     camera.aspect = width / height;
     camera.position.z = camera.aspect < 0.8 ? 10.6 : 8.8;

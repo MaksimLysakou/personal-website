@@ -22,7 +22,7 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--sans);
-  font-size: 15px;
+  font-size: 18px;
   -webkit-font-smoothing: antialiased;
 }
 ::selection {
@@ -91,7 +91,7 @@ h4,
 .art-caption,
 .footer-note {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 400;
   letter-spacing: 1.2px;
   line-height: 1.7;
@@ -142,11 +142,11 @@ h4,
   display: flex;
   align-items: center;
   gap: 13px;
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 600;
 }
 .brand-symbol {
-  font-size: 34px;
+  font-size: 37px;
   font-weight: 750;
   letter-spacing: -5px;
   line-height: 1;
@@ -159,7 +159,7 @@ h4,
   display: flex;
   align-items: center;
   gap: 33px;
-  font-size: 12px;
+  font-size: 15px;
 }
 .nav-menu > a {
   transition: color 0.2s;
@@ -198,25 +198,25 @@ h4,
   gap: 10px;
   align-items: center;
   margin-bottom: 26px;
-  font-size: 9px;
+  font-size: 12px;
   letter-spacing: 1.1px;
 }
 .hero h1 {
-  font-size: clamp(54px, 5.55vw, 80px);
+  font-size: clamp(59.4px, 6.11vw, 88px);
   line-height: 1.035;
   letter-spacing: -4px;
   font-weight: 500;
 }
 .hero-role {
-  font-size: 14px;
+  font-size: 17px;
   font-weight: 600;
   margin-top: 30px;
 }
 .hero-description {
-  font-size: 16px;
+  font-size: 19px;
   color: var(--muted);
   line-height: 1.7;
-  max-width: 400px;
+  max-width: 460px;
   margin-top: 13px;
 }
 .hero-actions {
@@ -231,7 +231,7 @@ h4,
   align-items: center;
   gap: 30px;
   padding: 17px 21px;
-  font-size: 12px;
+  font-size: 15px;
   border-radius: 4px;
   transition:
     background 0.2s,
@@ -246,7 +246,7 @@ h4,
   transform: translateY(-2px);
 }
 .text-link {
-  font-size: 12px;
+  font-size: 15px;
   padding-block: 12px;
   border-bottom: 1px solid #b5b4ad;
 }
@@ -307,7 +307,7 @@ h4,
   position: absolute;
   font-family: var(--mono);
   color: #aaa99f;
-  font-size: 20px;
+  font-size: 23px;
 }
 .cross-top {
   right: 10%;
@@ -321,7 +321,7 @@ h4,
   position: absolute;
   top: 5px;
   left: 26px;
-  font-size: 8px;
+  font-size: 11px;
   letter-spacing: 1px;
   z-index: 3;
   color: var(--muted);
@@ -343,7 +343,7 @@ h4,
   display: flex;
   align-items: center;
   gap: 9px;
-  font-size: 8px;
+  font-size: 11px;
   z-index: 3;
 }
 .motion-toggle {
@@ -356,7 +356,7 @@ h4,
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  font-size: 12px;
+  font-size: 15px;
 }
 .motion-toggle:hover {
   border-color: var(--orange);
@@ -391,15 +391,15 @@ h4,
   display: flex;
   align-items: center;
   gap: 14px;
-  font-size: 11px;
+  font-size: 14px;
   color: var(--muted);
 }
 .scroll-link > span {
-  font-size: 19px;
+  font-size: 22px;
   color: var(--ink);
 }
 .hero-bottom > .eyebrow {
-  font-size: 8px;
+  font-size: 11px;
   color: var(--muted);
 }
 .discipline-strip {
@@ -411,11 +411,11 @@ h4,
   align-items: center;
   gap: 20px;
   padding-block: 25px;
-  font-size: 14px;
+  font-size: 17px;
 }
 .asterisk {
   color: var(--orange);
-  font-size: 24px;
+  font-size: 26px;
   line-height: 1;
 }
 .section-label {
@@ -423,14 +423,14 @@ h4,
   align-items: center;
   gap: 18px;
   color: var(--muted);
-  font-size: 9px;
+  font-size: 12px;
   margin-bottom: 40px;
 }
 .section-number {
   color: var(--orange);
 }
 h2 {
-  font-size: clamp(35px, 3.4vw, 48px);
+  font-size: clamp(38.5px, 3.74vw, 52.8px);
   letter-spacing: -1.9px;
   line-height: 1.13;
 }
@@ -454,7 +454,7 @@ h2 {
 }
 .hello-avatar > span {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 13px;
   color: var(--muted);
 }
 .hello-avatar > span > span {
@@ -462,7 +462,7 @@ h2 {
   margin-left: 5px;
 }
 .about-copy {
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.85;
   color: var(--muted);
   padding-top: 4px;
@@ -494,17 +494,17 @@ h2 {
 }
 .stats strong {
   font-weight: 500;
-  font-size: 48px;
+  font-size: 53px;
   line-height: 1;
   letter-spacing: -2px;
 }
 .stats strong > span {
   color: var(--orange);
-  font-size: 30px;
+  font-size: 33px;
   vertical-align: top;
 }
 .stats > div > span {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--muted);
 }
 .expertise {
@@ -518,7 +518,7 @@ h2 {
   margin-bottom: 42px;
 }
 .section-heading > p {
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.8;
   color: var(--muted);
 }
@@ -546,28 +546,28 @@ h2 {
 }
 .expertise-icon {
   color: var(--orange);
-  font-size: 32px;
+  font-size: 35px;
   letter-spacing: -4px;
   line-height: 1;
 }
 .card-top > .eyebrow {
   color: #909087;
-  font-size: 9px;
+  font-size: 12px;
 }
 h3 {
-  font-size: 25px;
+  font-size: 28px;
   line-height: 1.2;
   letter-spacing: -0.8px;
 }
 .expertise-card > p {
-  font-size: 13px;
+  font-size: 16px;
   line-height: 1.85;
   color: var(--muted);
   margin-top: 18px;
   min-height: 99px;
 }
 h4 {
-  font-size: 8px;
+  font-size: 11px;
   letter-spacing: 1px;
   color: var(--ink);
   margin-bottom: 15px;
@@ -581,7 +581,7 @@ h4 {
   gap: 7px;
 }
 .tags > span {
-  font-size: 10px;
+  font-size: 13px;
   padding: 7px 9px;
   border: 1px solid #d9d9d0;
   border-radius: 3px;
@@ -592,14 +592,14 @@ h4 {
   list-style: none;
   margin: 0;
   color: #616159;
-  font-size: 12px;
+  font-size: 15px;
   line-height: 2.1;
 }
 .detail-list li::before {
   content: "↗";
   margin-right: 10px;
   color: #a6a69b;
-  font-size: 10px;
+  font-size: 13px;
 }
 .card-foot {
   border-top: 1px solid var(--line);
@@ -610,7 +610,7 @@ h4 {
   margin-bottom: 8px;
 }
 .card-foot p {
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.8;
   color: var(--muted);
 }
@@ -618,12 +618,12 @@ h4 {
   margin-bottom: 24px;
 }
 .projects .section-heading > .eyebrow {
-  font-size: 8px;
+  font-size: 11px;
   color: var(--muted);
   padding-bottom: 6px;
 }
 .section-description {
-  font-size: 14px;
+  font-size: 17px;
   line-height: 1.85;
   color: var(--muted);
   max-width: 650px;
@@ -651,14 +651,15 @@ h4 {
   position: absolute;
   top: 19px;
   left: 20px;
-  font-size: 7px;
+  font-size: 10px;
   opacity: 0.6;
 }
 .visual-footer {
+  right: 20px;
   position: absolute;
   bottom: 19px;
   left: 20px;
-  font-size: 7px;
+  font-size: 10px;
   letter-spacing: 0.8px;
 }
 .crypto-visual {
@@ -735,19 +736,19 @@ h4 {
   left: 0;
   width: 100%;
   text-align: center;
-  font-size: 27px;
+  font-size: 30px;
   letter-spacing: -1px;
   font-weight: 550;
 }
 .founder-wordmark > span {
-  font-size: 17px;
+  font-size: 20px;
   vertical-align: top;
 }
 .visual-arrow {
   position: absolute;
   right: 15px;
   bottom: 16px;
-  font-size: 17px;
+  font-size: 20px;
 }
 .project-card:hover .flow-symbol {
   transform: skew(-15deg) translateY(-7px);
@@ -785,7 +786,7 @@ h4 {
   top: 162px;
   width: 100%;
   text-align: center;
-  font-size: 45px;
+  font-size: 50px;
   letter-spacing: -2px;
   color: #5b5648;
 }
@@ -799,13 +800,14 @@ h4 {
   flex-direction: column;
 }
 .project-title {
+  flex-wrap: wrap;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
 }
 .project-title h3 {
-  font-size: 22px;
+  font-size: 24px;
 }
 .project-title h3 a:hover {
   color: var(--orange);
@@ -814,7 +816,7 @@ h4 {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  font-size: 8px;
+  font-size: 11px;
   border-radius: 3px;
   padding: 5px 7px;
   white-space: nowrap;
@@ -842,14 +844,15 @@ h4 {
   background: #987533;
 }
 .project-info > p {
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.85;
   color: var(--muted);
   margin-top: 15px;
   margin-bottom: 24px;
 }
 .project-meta {
-  font-size: 7px;
+  flex-wrap: wrap;
+  font-size: 10px;
   letter-spacing: 0.6px;
   border-top: 1px solid var(--line);
   padding-top: 16px;
@@ -871,7 +874,7 @@ h4 {
 }
 .quote-mark {
   font-family: Georgia, serif;
-  font-size: 145px;
+  font-size: 160px;
   line-height: 0.9;
   color: var(--orange);
 }
@@ -880,7 +883,7 @@ h4 {
 }
 .testimonial blockquote {
   margin: 0;
-  font-size: 20px;
+  font-size: 23px;
   line-height: 1.75;
   letter-spacing: -0.25px;
 }
@@ -903,11 +906,11 @@ h4 {
   gap: 7px;
 }
 .testimonial figcaption strong {
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 600;
 }
 .testimonial figcaption span {
-  font-size: 10px;
+  font-size: 13px;
   line-height: 1.5;
   color: var(--muted);
 }
@@ -929,7 +932,7 @@ h4 {
 }
 .testimonial-counter {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 13px;
   color: #a3a298;
   letter-spacing: 2px;
 }
@@ -946,7 +949,7 @@ h4 {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  font-size: 19px;
+  font-size: 22px;
   transition:
     color 0.2s,
     background 0.2s;
@@ -964,7 +967,7 @@ h4 {
   align-items: center;
 }
 .contact h2 {
-  font-size: clamp(50px, 6.3vw, 86px);
+  font-size: clamp(55px, 6.93vw, 94.6px);
   letter-spacing: -4px;
   line-height: 1.09;
 }
@@ -976,7 +979,7 @@ h4 {
   place-items: center;
   width: 108px;
   height: 108px;
-  font-size: 55px;
+  font-size: 61px;
   background: var(--orange);
   color: white;
   border-radius: 50%;
@@ -998,11 +1001,11 @@ h4 {
 }
 .contact-bottom > p {
   color: var(--muted);
-  font-size: 13px;
+  font-size: 16px;
   line-height: 1.8;
 }
 .email-link {
-  font-size: 17px;
+  font-size: 20px;
   border-bottom: 1px solid #b6b6aa;
   padding-bottom: 8px;
 }
@@ -1021,13 +1024,13 @@ h4 {
   gap: 24px;
 }
 .footer-note {
-  font-size: 8px;
+  font-size: 11px;
   color: var(--muted);
 }
 .social-links {
   display: flex;
   gap: 25px;
-  font-size: 10px;
+  font-size: 13px;
 }
 .social-links a:hover {
   color: var(--orange);
@@ -1080,7 +1083,7 @@ h4 {
     min-height: 660px;
   }
   .hero h1 {
-    font-size: 62px;
+    font-size: 68px;
     letter-spacing: -3.5px;
   }
   .hero-art {
@@ -1090,25 +1093,25 @@ h4 {
     padding-bottom: 40px;
   }
   .hero-role {
-    font-size: 12px;
+    font-size: 15px;
   }
   .hero-description {
-    font-size: 14px;
-    max-width: 350px;
+    font-size: 17px;
+    max-width: 400px;
   }
   .art-note {
     left: 12px;
-    font-size: 7px;
+    font-size: 10px;
   }
   .art-caption {
     right: 0;
-    font-size: 7px;
+    font-size: 10px;
   }
   .expertise-card {
     padding: 25px;
   }
   .expertise-card h3 {
-    font-size: 23px;
+    font-size: 25px;
   }
   .project-grid {
     gap: 18px;
@@ -1127,7 +1130,7 @@ h4 {
     gap: 50px;
   }
   .testimonial blockquote {
-    font-size: 18px;
+    font-size: 21px;
   }
 }
 @media (max-width: 800px) {
@@ -1141,7 +1144,7 @@ h4 {
     gap: 17px;
   }
   .nav-menu > a {
-    font-size: 10px;
+    font-size: 13px;
   }
   .nav-cv {
     padding: 9px 11px;
@@ -1151,7 +1154,7 @@ h4 {
     margin-left: 5px;
   }
   .wordmark {
-    font-size: 11px;
+    font-size: 14px;
     gap: 9px;
   }
   .hero {
@@ -1160,11 +1163,11 @@ h4 {
     grid-template-columns: 1.2fr 1fr;
   }
   .hero h1 {
-    font-size: 50px;
+    font-size: 55px;
     letter-spacing: -2.8px;
   }
   .hero-intro {
-    font-size: 7px;
+    font-size: 10px;
     gap: 7px;
   }
   .hero-art {
@@ -1173,7 +1176,7 @@ h4 {
     margin-left: -20px;
   }
   .hero-description {
-    max-width: 310px;
+    max-width: 360px;
   }
   .hero-actions {
     gap: 20px;
@@ -1183,26 +1186,26 @@ h4 {
     gap: 18px;
   }
   .art-caption {
-    font-size: 6px;
+    font-size: 10px;
     right: 8px;
     bottom: 13px;
   }
   .art-note {
     top: -15px;
-    font-size: 6px;
+    font-size: 10px;
   }
   .sculpture-fallback {
     border-width: 42px;
   }
   .hero-bottom > .eyebrow {
-    font-size: 6px;
+    font-size: 10px;
   }
   .discipline-strip > .container {
-    font-size: 11px;
+    font-size: 14px;
     gap: 10px;
   }
   .asterisk {
-    font-size: 20px;
+    font-size: 23px;
   }
   .expertise-grid {
     grid-template-columns: 1fr;
@@ -1246,7 +1249,7 @@ h4 {
     height: 215px;
   }
   .founder-wordmark {
-    font-size: 21px;
+    font-size: 23px;
     top: 145px;
   }
   .flow-symbol {
@@ -1260,21 +1263,21 @@ h4 {
   }
   .solas-wordmark {
     top: 132px;
-    font-size: 39px;
+    font-size: 43px;
   }
   .visual-footer {
-    font-size: 5px;
+    font-size: 10px;
     left: 12px;
   }
   .visual-label {
     left: 12px;
-    font-size: 6px;
+    font-size: 10px;
   }
   .project-title h3 {
-    font-size: 20px;
+    font-size: 23px;
   }
   .project-meta {
-    font-size: 6px;
+    font-size: 10px;
     flex-direction: column;
     gap: 5px;
   }
@@ -1283,24 +1286,24 @@ h4 {
     gap: 20px;
   }
   .quote-mark {
-    font-size: 110px;
+    font-size: 121px;
   }
   .stats > div {
     padding-left: 18px;
   }
   .stats > div > span {
-    font-size: 9px;
+    font-size: 12px;
   }
   .stats strong {
-    font-size: 40px;
+    font-size: 44px;
   }
   .contact-arrow {
     width: 80px;
     height: 80px;
-    font-size: 40px;
+    font-size: 44px;
   }
   .email-link {
-    font-size: 14px;
+    font-size: 17px;
   }
   .email-link > span {
     margin-left: 10px;
@@ -1320,7 +1323,7 @@ h4 {
     height: 72px;
   }
   .wordmark {
-    font-size: 12px;
+    font-size: 15px;
   }
   .menu-toggle {
     display: flex;
@@ -1364,7 +1367,7 @@ h4 {
     display: flex;
   }
   .nav-menu > a {
-    font-size: 14px;
+    font-size: 17px;
     padding: 15px;
   }
   .nav-cv {
@@ -1380,20 +1383,20 @@ h4 {
     min-height: 0;
   }
   .hero-intro {
-    font-size: 7px;
+    font-size: 10px;
     letter-spacing: 0.8px;
     margin-bottom: 25px;
   }
   .hero h1 {
-    font-size: clamp(43px, 11.5vw, 68px);
+    font-size: clamp(47.3px, 12.65vw, 74.8px);
     letter-spacing: -2.7px;
   }
   .hero-role {
-    font-size: 11px;
+    font-size: 14px;
     margin-top: 24px;
   }
   .hero-description {
-    font-size: 14px;
+    font-size: 17px;
     max-width: 355px;
     margin-top: 11px;
   }
@@ -1405,19 +1408,17 @@ h4 {
     padding-bottom: 0;
   }
   .hero-art {
-    align-self: stretch;
-    margin: 25px -12px 0;
-    height: 350px;
+    display: none;
   }
   .art-note {
     left: 29px;
     top: 18px;
-    font-size: 6px;
+    font-size: 10px;
   }
   .art-caption {
     right: 28px;
     bottom: 15px;
-    font-size: 6px;
+    font-size: 10px;
   }
   .motion-toggle {
     bottom: 5px;
@@ -1441,7 +1442,7 @@ h4 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
-    font-size: 11px;
+    font-size: 14px;
     padding-block: 22px;
   }
   .discipline-strip .asterisk {
@@ -1453,7 +1454,7 @@ h4 {
     margin-right: 8px;
   }
   .section-label {
-    font-size: 8px;
+    font-size: 11px;
     gap: 13px;
     margin-bottom: 30px;
     letter-spacing: 0.8px;
@@ -1463,11 +1464,11 @@ h4 {
     gap: 28px;
   }
   h2 {
-    font-size: 36px;
+    font-size: 40px;
     letter-spacing: -1.5px;
   }
   .about-copy {
-    font-size: 14px;
+    font-size: 17px;
   }
   .hello-avatar {
     margin-bottom: 19px;
@@ -1483,10 +1484,10 @@ h4 {
     border-left: 0;
   }
   .stats > div > span {
-    font-size: 10px;
+    font-size: 13px;
   }
   .stats strong {
-    font-size: 43px;
+    font-size: 47px;
   }
   .section-heading {
     display: block;
@@ -1500,11 +1501,11 @@ h4 {
     padding: 26px;
   }
   .expertise-card h3 {
-    font-size: 27px;
+    font-size: 30px;
   }
   .expertise-card > p {
     min-height: 0;
-    font-size: 13px;
+    font-size: 16px;
   }
   .expertise-card > h4 {
     margin-top: 25px;
@@ -1513,20 +1514,20 @@ h4 {
     margin-bottom: 25px;
   }
   .tags > span {
-    font-size: 11px;
+    font-size: 14px;
   }
   .detail-list {
-    font-size: 13px;
+    font-size: 16px;
   }
   .card-foot p {
-    font-size: 13px;
+    font-size: 16px;
   }
   .projects .section-heading > .eyebrow {
     display: block;
     margin-top: 18px;
   }
   .section-description {
-    font-size: 13px;
+    font-size: 16px;
     margin-bottom: 28px;
   }
   .project-grid {
@@ -1541,33 +1542,33 @@ h4 {
     align-items: center;
   }
   .project-title h3 {
-    font-size: 24px;
+    font-size: 26px;
   }
   .badge {
-    font-size: 9px;
+    font-size: 12px;
   }
   .project-info > p {
-    font-size: 13px;
+    font-size: 16px;
     margin-bottom: 19px;
   }
   .project-meta {
     flex-direction: row;
-    font-size: 7px;
+    font-size: 10px;
   }
   .project-info {
     padding-top: 20px;
   }
   .visual-label {
     left: 20px;
-    font-size: 8px;
+    font-size: 11px;
   }
   .visual-footer {
     left: 20px;
-    font-size: 7px;
+    font-size: 10px;
   }
   .founder-wordmark {
     top: 174px;
-    font-size: 29px;
+    font-size: 32px;
   }
   .flow-symbol {
     top: 65px;
@@ -1580,18 +1581,18 @@ h4 {
   }
   .solas-wordmark {
     top: 165px;
-    font-size: 46px;
+    font-size: 51px;
   }
   .testimonial-layout {
     display: block;
     margin-top: 30px;
   }
   .quote-mark {
-    font-size: 84px;
+    font-size: 92px;
     height: 58px;
   }
   .testimonial blockquote {
-    font-size: 16px;
+    font-size: 19px;
     line-height: 1.8;
   }
   .testimonial figcaption {
@@ -1602,13 +1603,13 @@ h4 {
     gap: 5px;
   }
   .testimonial figcaption span {
-    font-size: 9px;
+    font-size: 12px;
   }
   .testimonial-controls {
     margin-top: 26px;
   }
   .contact h2 {
-    font-size: clamp(41px, 10.6vw, 63px);
+    font-size: clamp(45.1px, 11.66vw, 69.3px);
     letter-spacing: -2.3px;
   }
   .contact-main {
@@ -1619,7 +1620,7 @@ h4 {
     flex-shrink: 0;
     width: 54px;
     height: 54px;
-    font-size: 29px;
+    font-size: 32px;
     margin: 0 0 6px;
   }
   .contact-bottom {
@@ -1628,7 +1629,7 @@ h4 {
   }
   .email-link {
     display: inline-block;
-    font-size: 14px;
+    font-size: 17px;
     margin-top: 26px;
   }
   .footer {
@@ -1637,7 +1638,7 @@ h4 {
     gap: 25px;
   }
   .social-links {
-    font-size: 10px;
+    font-size: 13px;
     gap: 20px;
   }
   .footer .wordmark {

@@ -27,7 +27,8 @@ document.addEventListener("keydown", (event) => {
 document.addEventListener("click", (event) => {
   if (!event.target.closest(".nav")) closeMenu();
 });
-window.matchMedia("(max-width: 600px)").addEventListener("change", closeMenu);
+const mobileViewport = window.matchMedia("(max-width: 600px)");
+mobileViewport.addEventListener("change", closeMenu);
 
 if ("IntersectionObserver" in window && !reducedMotion.matches) {
   const revealObserver = new IntersectionObserver(
@@ -74,6 +75,21 @@ document
 showTestimonial(0);
 
 // Keep the page functional even if WebGL or the optional scene cannot load.
-import("./hero.js")
-  .then(({ initHero }) => initHero(reducedMotion))
-  .catch(() => {});
+let heroRequested = false;
+function loadHero() {
+  if (mobileViewport.matches || heroRequested) return;
+  heroRequested = true;
+  import("./hero.js")
+    .then(({ initHero }) => {
+      if (mobileViewport.matches) {
+        heroRequested = false;
+        return;
+      }
+      initHero(reducedMotion);
+    })
+    .catch(() => {
+      heroRequested = false;
+    });
+}
+mobileViewport.addEventListener("change", loadHero);
+loadHero();

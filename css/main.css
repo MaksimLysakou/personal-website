@@ -262,6 +262,15 @@ h4,
   min-width: 0;
   align-self: start;
   margin-top: -6px;
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.hero-art.is-over-figure {
+  cursor: grab;
+}
+.hero-art.is-dragging {
+  cursor: grabbing;
 }
 .art-grid {
   position: absolute;
@@ -362,18 +371,78 @@ h4,
   border-color: var(--orange);
 }
 .sculpture-fallback {
+  --u: 22px;
   position: absolute;
-  left: 23%;
-  top: 23%;
-  width: 58%;
-  aspect-ratio: 1;
-  border: 66px solid var(--orange);
-  border-radius: 45%;
-  transform: rotate(-32deg) skew(9deg);
-  box-shadow:
-    inset 14px 9px 18px #a12d13,
-    15px 17px 30px #94341130;
+  left: calc(50% - var(--u) * 7);
+  top: calc(50% - var(--u) * 5);
+  width: var(--u);
+  height: var(--u);
   background: transparent;
+  box-shadow:
+    calc(var(--u) * 8) calc(var(--u) * 0) 0 0 #f2b544,
+    calc(var(--u) * 9) calc(var(--u) * 0) 0 0 #f2b544,
+    calc(var(--u) * 10) calc(var(--u) * 0) 0 0 #f2b544,
+    calc(var(--u) * 11) calc(var(--u) * 0) 0 0 #f2b544,
+    calc(var(--u) * 7) calc(var(--u) * 1) 0 0 #f2b544,
+    calc(var(--u) * 8) calc(var(--u) * 1) 0 0 #f2b544,
+    calc(var(--u) * 9) calc(var(--u) * 1) 0 0 #f2b544,
+    calc(var(--u) * 10) calc(var(--u) * 1) 0 0 #f2b544,
+    calc(var(--u) * 11) calc(var(--u) * 1) 0 0 #f2b544,
+    calc(var(--u) * 12) calc(var(--u) * 1) 0 0 #f2b544,
+    calc(var(--u) * 7) calc(var(--u) * 2) 0 0 #f2b544,
+    calc(var(--u) * 8) calc(var(--u) * 2) 0 0 #f2b544,
+    calc(var(--u) * 9) calc(var(--u) * 2) 0 0 #2a2926,
+    calc(var(--u) * 10) calc(var(--u) * 2) 0 0 #f2b544,
+    calc(var(--u) * 11) calc(var(--u) * 2) 0 0 #f2b544,
+    calc(var(--u) * 12) calc(var(--u) * 2) 0 0 #f2b544,
+    calc(var(--u) * 13) calc(var(--u) * 2) 0 0 #c4421d,
+    calc(var(--u) * 7) calc(var(--u) * 3) 0 0 #f2b544,
+    calc(var(--u) * 8) calc(var(--u) * 3) 0 0 #f2b544,
+    calc(var(--u) * 9) calc(var(--u) * 3) 0 0 #f2b544,
+    calc(var(--u) * 10) calc(var(--u) * 3) 0 0 #f2b544,
+    calc(var(--u) * 11) calc(var(--u) * 3) 0 0 #f2b544,
+    calc(var(--u) * 12) calc(var(--u) * 3) 0 0 #f2b544,
+    calc(var(--u) * 13) calc(var(--u) * 3) 0 0 #ed5b32,
+    calc(var(--u) * 8) calc(var(--u) * 4) 0 0 #f2b544,
+    calc(var(--u) * 9) calc(var(--u) * 4) 0 0 #f2b544,
+    calc(var(--u) * 10) calc(var(--u) * 4) 0 0 #f2b544,
+    calc(var(--u) * 11) calc(var(--u) * 4) 0 0 #f2b544,
+    calc(var(--u) * 1) calc(var(--u) * 5) 0 0 #f2b544,
+    calc(var(--u) * 8) calc(var(--u) * 5) 0 0 #f2b544,
+    calc(var(--u) * 9) calc(var(--u) * 5) 0 0 #f2b544,
+    calc(var(--u) * 10) calc(var(--u) * 5) 0 0 #f2b544,
+    calc(var(--u) * 1) calc(var(--u) * 6) 0 0 #f2b544,
+    calc(var(--u) * 2) calc(var(--u) * 6) 0 0 #f2b544,
+    calc(var(--u) * 7) calc(var(--u) * 6) 0 0 #f2b544,
+    calc(var(--u) * 8) calc(var(--u) * 6) 0 0 #f2b544,
+    calc(var(--u) * 9) calc(var(--u) * 6) 0 0 #f2b544,
+    calc(var(--u) * 10) calc(var(--u) * 6) 0 0 #f2b544,
+    calc(var(--u) * 2) calc(var(--u) * 7) 0 0 #f2b544,
+    calc(var(--u) * 3) calc(var(--u) * 7) 0 0 #f2b544,
+    calc(var(--u) * 4) calc(var(--u) * 7) 0 0 #f2b544,
+    calc(var(--u) * 5) calc(var(--u) * 7) 0 0 #f2b544,
+    calc(var(--u) * 6) calc(var(--u) * 7) 0 0 #f2b544,
+    calc(var(--u) * 7) calc(var(--u) * 7) 0 0 #f2b544,
+    calc(var(--u) * 8) calc(var(--u) * 7) 0 0 #f2b544,
+    calc(var(--u) * 9) calc(var(--u) * 7) 0 0 #f2b544,
+    calc(var(--u) * 10) calc(var(--u) * 7) 0 0 #f2b544,
+    calc(var(--u) * 11) calc(var(--u) * 7) 0 0 #f2b544,
+    calc(var(--u) * 3) calc(var(--u) * 8) 0 0 #f2b544,
+    calc(var(--u) * 4) calc(var(--u) * 8) 0 0 #f2b544,
+    calc(var(--u) * 5) calc(var(--u) * 8) 0 0 #f2b544,
+    calc(var(--u) * 6) calc(var(--u) * 8) 0 0 #f2b544,
+    calc(var(--u) * 7) calc(var(--u) * 8) 0 0 #f2b544,
+    calc(var(--u) * 8) calc(var(--u) * 8) 0 0 #f2b544,
+    calc(var(--u) * 9) calc(var(--u) * 8) 0 0 #f2b544,
+    calc(var(--u) * 10) calc(var(--u) * 8) 0 0 #f2b544,
+    calc(var(--u) * 11) calc(var(--u) * 8) 0 0 #f2b544,
+    calc(var(--u) * 4) calc(var(--u) * 9) 0 0 #f2b544,
+    calc(var(--u) * 5) calc(var(--u) * 9) 0 0 #f2b544,
+    calc(var(--u) * 6) calc(var(--u) * 9) 0 0 #f2b544,
+    calc(var(--u) * 7) calc(var(--u) * 9) 0 0 #f2b544,
+    calc(var(--u) * 8) calc(var(--u) * 9) 0 0 #f2b544,
+    calc(var(--u) * 9) calc(var(--u) * 9) 0 0 #f2b544,
+    calc(var(--u) * 10) calc(var(--u) * 9) 0 0 #f2b544;
 }
 .scene-ready .sculpture-fallback {
   display: none;
@@ -1182,7 +1251,7 @@ h4 {
     font-size: 10px;
   }
   .sculpture-fallback {
-    border-width: 42px;
+    --u: 17px;
   }
   .hero-bottom > .eyebrow {
     font-size: 10px;
@@ -1632,10 +1701,7 @@ h4 {
     width: 100%;
   }
   .sculpture-fallback {
-    width: 48%;
-    left: 26%;
-    top: 16%;
-    border-width: 48px;
+    --u: 15px;
   }
 }
 @media (prefers-reduced-motion: reduce) {

@@ -17,12 +17,15 @@ class Document(HTMLParser):
         self.meta = {}
         self.headings = 0
         self.canonical = None
+        self.images = []
         self.feed(source)
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
         if tag == "a":
             self.links.append(attrs.get("href"))
+        if tag == "img":
+            self.images.append(attrs)
         if tag == "meta":
             self.meta[attrs.get("name", attrs.get("property"))] = attrs.get("content")
         if tag == "h1":
@@ -104,6 +107,39 @@ class BuildTests(unittest.TestCase):
         self.assertFalse((self.root / "_site/blog/latest-note").exists())
         self.assertFalse((self.root / "_site/blog/older-note").exists())
         self.assertNotIn('/blog/', Document(self.read("index.html")).links)
+
+    def test_cover_is_shared_by_article_listing_and_social_metadata(self):
+        (self.root / "img").mkdir()
+        for name in ("cover.webp", "cover-small.webp"):
+            (self.root / "img" / name).write_bytes(b"image fixture")
+        self.article(extra='data-cover="/img/cover.webp" data-cover-small="/img/cover-small.webp" data-cover-alt="Robot &amp; developer" data-cover-caption="A shared idea."')
+        self.build()
+        source = self.read("blog/first-note/index.html")
+        doc = Document(source)
+        image = next(img for img in doc.images if img.get("src") == "/img/cover.webp")
+        self.assertEqual(image["alt"], "Robot & developer")
+        self.assertIn("/img/cover-small.webp 600w", image["srcset"])
+        self.assertEqual(doc.meta["og:image"], SITE + "/img/cover.webp")
+        self.assertIn("A shared idea.", source)
+        self.assertTrue(any(img.get("src") == "/img/cover.webp" for img in Document(self.read("blog/index.html")).images))
+        self.assertTrue((self.root / "_site/img/cover.webp").exists())
+        self.article()
+        self.build()
+        self.assertNotIn("article-cover", self.read("blog/first-note/index.html"))
+        self.assertNotIn("entry-cover", self.read("blog/index.html"))
+
+    def test_missing_cover_or_alt_fails_before_replacing_output(self):
+        self.article()
+        self.build()
+        original = self.read("blog/first-note/index.html")
+        for extra, message in [
+            ('data-cover="/img/missing.webp"', "data-cover-alt"),
+            ('data-cover="/img/missing.webp" data-cover-alt="Missing"', "existing file"),
+        ]:
+            self.article(extra=extra)
+            with self.assertRaisesRegex(ValueError, message):
+                self.build()
+            self.assertEqual(self.read("blog/first-note/index.html"), original)
 
     def test_preview_drafts_is_noindex(self):
         self.article(status="draft")

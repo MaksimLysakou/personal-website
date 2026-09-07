@@ -70,6 +70,10 @@ class Post:
     body: str
     reading_time: int
     is_public: bool
+    cover: str
+    cover_alt: str
+    cover_small: str
+    cover_caption: str
 
     @property
     def path(self):
@@ -116,10 +120,22 @@ def read_posts(root, today, drafts=False):
         body = parser.source[parser.start:parser.end].strip()
         if not body or not parser.words:
             raise ValueError(f"{source.name}: article body is empty")
+        cover = attrs.get("data-cover", "").strip()
+        cover_alt = attrs.get("data-cover-alt", "").strip()
+        cover_small = attrs.get("data-cover-small", "").strip()
+        if cover and not cover_alt:
+            raise ValueError(f"{source.name}: data-cover-alt is required with data-cover")
+        if cover_small and not cover:
+            raise ValueError(f"{source.name}: data-cover-small requires data-cover")
+        for image in (cover, cover_small):
+            if image and (not image.startswith("/img/") or ".." in Path(image).parts
+                          or not (root / image.lstrip("/")).is_file()):
+                raise ValueError(f"{source.name}: cover must reference an existing file under /img/")
         posts.append(Post(source.stem, attrs["data-title"].strip(),
                           attrs["data-description"].strip(), published, updated,
                           lang, [tag.strip() for tag in attrs.get("data-tags", "").split(",") if tag.strip()],
-                          body, max(1, math.ceil(len(parser.words) / 220)), is_public))
+                          body, max(1, math.ceil(len(parser.words) / 220)), is_public,
+                          cover, cover_alt, cover_small, attrs.get("data-cover-caption", "").strip()))
     return sorted(posts, key=lambda post: (post.published, post.slug), reverse=True)
 
 
@@ -166,23 +182,41 @@ def build(root=ROOT, *, today=None, drafts=False):
     entries = []
     for post in posts:
         tags = "".join(f'<span>{escape(tag)}</span>' for tag in post.tags)
+        cover = thumbnail = ""
+        if post.cover:
+            responsive = (f' srcset="{escape(post.cover_small)} 600w, {escape(post.cover)} 1200w"'
+                          if post.cover_small else "")
+            image = f'<img src="{escape(post.cover)}"{responsive} width="1200" height="800" decoding="async"'
+            thumbnail = (f'<a class="entry-cover" href="{post.path}" tabindex="-1" aria-hidden="true">'
+                         f'{image} sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 992px) 280px, 360px" alt="" loading="lazy" /></a>')
+            caption = f'<figcaption>{escape(post.cover_caption)}</figcaption>' if post.cover_caption else ""
+            cover = (f'<figure class="article-cover">{image} '
+                     f'sizes="(max-width: 992px) 100vw, 920px" alt="{escape(post.cover_alt)}" '
+                     f'loading="eager" fetchpriority="high" />{caption}</figure>')
         notice = '<p class="draft-notice">Draft preview — not published</p>' if not post.is_public else ""
-        entries.append(f'''<article class="blog-entry">
+        entries.append(f'''<article class="blog-entry{' blog-entry--with-cover' if post.cover else ''}">
+          {thumbnail}<div class="entry-details">
           <div class="entry-date"><time datetime="{post.published}">{display_date(post.published)}</time><span>{post.reading_time} min read</span></div>
           <div class="entry-content">{notice}<div class="article-topics">{tags}</div>
             <h2><a href="{post.path}">{escape(post.title)} <span aria-hidden="true">↗</span></a></h2>
-            <p>{escape(post.description)}</p></div></article>''')
+            <p>{escape(post.description)}</p></div></div></article>''')
         updated = (f'<span>Updated <time datetime="{post.updated}">{display_date(post.updated)}</time></span>'
                    if post.updated != post.published else "")
         article = render(root, "article.html", title=escape(post.title), description=escape(post.description),
                          date=post.published, display_date=display_date(post.published), tags=tags,
-                         reading_time=post.reading_time, body=post.body, updated=updated, preview_notice=notice)
+                         reading_time=post.reading_time, body=post.body, updated=updated, preview_notice=notice,
+                         cover=cover)
         metadata = (f'<meta property="article:published_time" content="{post.published}" />\n'
                     f'<meta property="article:modified_time" content="{post.updated}" />')
         data = {"@context": "https://schema.org", "@type": "BlogPosting", "headline": post.title,
                 "description": post.description, "datePublished": str(post.published),
                 "dateModified": str(post.updated), "inLanguage": post.lang, "author": AUTHOR,
                 "url": SITE + post.path, "mainEntityOfPage": SITE + post.path}
+        if post.cover:
+            data["image"] = SITE + post.cover
+            metadata += (f'\n<meta property="og:image" content="{escape(SITE + post.cover)}" />'
+                         f'\n<meta property="og:image:alt" content="{escape(post.cover_alt)}" />'
+                         '\n<meta name="twitter:card" content="summary_large_image" />')
         files[f"blog/{post.slug}/index.html"] = page(article, title=f"{post.title} | Maksim Lysakou",
                     description=post.description, path=post.path, data=data, lang=post.lang,
                     article_meta=metadata, indexable=post.is_public)

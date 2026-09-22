@@ -52,6 +52,13 @@ class BuildTests(unittest.TestCase):
     def build(self, **kwargs):
         return build(self.root, today=date(2026, 9, 7), **kwargs)
 
+    def external_article(self, slug="external-note", *, url="https://fively.dev/expertise/example/", **kwargs):
+        (self.root / "img").mkdir(exist_ok=True)
+        (self.root / "img/external.png").write_bytes(b"image fixture")
+        return self.article(slug, body="", extra=(
+            f'data-type="external" data-url="{url}" data-source="Fively" '
+            'data-cover="/img/external.png" data-cover-alt="Article cover"'), **kwargs)
+
     def read(self, path):
         return (self.root / "_site" / path).read_text(encoding="utf-8")
 
@@ -63,6 +70,15 @@ class BuildTests(unittest.TestCase):
         self.assertNotIn('/blog/', Document(self.read("index.html")).links)
         self.assertEqual(Document(self.read("blog/index.html")).meta["robots"], "noindex, follow")
         self.assertEqual(self.sitemap(), [SITE + "/"])
+
+    def test_experience_updates_at_the_start_of_each_year(self):
+        for today, years in ((date(2026, 12, 31), 9), (date(2027, 1, 1), 10)):
+            with self.subTest(today=today):
+                build(self.root, today=today)
+                home = self.read("index.html")
+                self.assertEqual(home.count(f'<span data-experience-years>{years}</span>'), 2)
+                self.assertNotIn("{{experience_years}}", home)
+                self.assertIn("since January 2017", Document(home).meta["description"])
 
     def test_drafts_future_posts_and_template_never_publish(self):
         self.article("draft-note", status="draft")
@@ -176,6 +192,76 @@ class BuildTests(unittest.TestCase):
         self.assertIn("&lt;/script&gt;", source)
         raw = source.split('<script type="application/ld+json">')[1].split('</script>')[0]
         self.assertEqual(json.loads(raw)["headline"], 'An "idea" & </script>')
+
+    def test_external_card_links_to_original_without_local_page(self):
+        destination = 'https://fively.dev/expertise/example/?a=1&b="two"'
+        self.external_article(url='https://fively.dev/expertise/example/?a=1&amp;b=&quot;two&quot;')
+        self.build()
+        listing = self.read("blog/index.html")
+        self.assertEqual(Document(listing).links.count(destination), 2)
+        self.assertIn('class="blog-entry blog-entry--with-cover blog-entry--external"', listing)
+        self.assertIn("Fively ↗", listing)
+        self.assertNotIn("min read", listing)
+        self.assertTrue(any(img.get("src") == "/img/external.png" for img in Document(listing).images))
+        self.assertFalse((self.root / "_site/blog/external-note").exists())
+        self.assertIn('/blog/', Document(self.read("index.html")).links)
+        self.assertEqual(self.sitemap(), [SITE + "/", SITE + "/blog/"])
+
+    def test_external_and_internal_posts_share_sorting_and_remove_old_pages(self):
+        self.article("older", day="2026-09-01")
+        self.article("newer", day="2026-09-06")
+        self.build()
+        self.assertTrue((self.root / "_site/blog/newer/index.html").exists())
+        self.external_article("newer", day="2026-09-06")
+        self.build()
+        listing = self.read("blog/index.html")
+        self.assertLess(listing.index('https://fively.dev/expertise/example/'), listing.index('/blog/older/'))
+        self.assertIn("min read", listing)
+        self.assertFalse((self.root / "_site/blog/newer").exists())
+        self.assertIn(SITE + "/blog/older/", self.sitemap())
+        self.assertNotIn(SITE + "/blog/newer/", self.sitemap())
+
+    def test_external_drafts_and_future_posts_follow_publication_rules(self):
+        self.external_article("draft-external", status="draft")
+        self.external_article("future-external", day="2099-01-01")
+        self.build()
+        self.assertNotIn('https://fively.dev/expertise/example/', Document(self.read("blog/index.html")).links)
+        self.assertNotIn('/blog/', Document(self.read("index.html")).links)
+        self.build(drafts=True)
+        listing = self.read("blog/index.html")
+        self.assertEqual(Document(listing).links.count('https://fively.dev/expertise/example/'), 4)
+        self.assertIn("noindex", Document(listing).meta["robots"])
+        self.assertEqual(listing.count("Draft preview"), 2)
+        self.assertEqual(self.sitemap(), [SITE + "/"])
+        self.assertFalse((self.root / "_site/blog/draft-external").exists())
+
+    def test_external_validation_preserves_last_good_build(self):
+        self.external_article()
+        self.build()
+        original = self.read("blog/index.html")
+        for url in ("", "/relative", "//fively.dev/post", "javascript:alert(1)",
+                    "https:///missing-host", "https://user:pass@fively.dev/", "https://fively.dev:wrong/",
+                    "https://fively.dev/with space", "https://fively.dev/&#10;bad", "https://fively.dev\\bad"):
+            with self.subTest(url=url):
+                self.external_article(url=url)
+                with self.assertRaisesRegex(ValueError, "data-url"):
+                    self.build()
+                self.assertEqual(self.read("blog/index.html"), original)
+        for extra, message in (
+            ('data-type="externl"', "data-type"),
+            ('data-url="https://fively.dev/"', "data-type=external"),
+            ('data-type="external" data-url="https://fively.dev/"', "data-cover"),
+        ):
+            self.article("external-note", extra=extra)
+            with self.assertRaisesRegex(ValueError, message):
+                self.build()
+            self.assertEqual(self.read("blog/index.html"), original)
+
+    def test_external_source_defaults_to_domain(self):
+        path = self.external_article()
+        path.write_text(path.read_text().replace(' data-source="Fively"', ''))
+        self.build()
+        self.assertIn("fively.dev ↗", self.read("blog/index.html"))
 
 
 if __name__ == "__main__":

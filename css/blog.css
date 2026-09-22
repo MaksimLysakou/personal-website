@@ -71,6 +71,10 @@
 .article-cover {
   margin: 34px 0 0;
 }
+.blog-entry--external .entry-cover img {
+  /* Preserve titles and branding in covers from other publications. */
+  aspect-ratio: auto;
+}
 .article-cover figcaption {
   margin-top: 12px;
   color: var(--muted);

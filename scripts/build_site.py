@@ -13,6 +13,7 @@ from pathlib import Path
 import re
 import shutil
 from threading import Lock
+from urllib.parse import urlsplit
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -74,10 +75,17 @@ class Post:
     cover_alt: str
     cover_small: str
     cover_caption: str
+    kind: str
+    external_url: str
+    source_name: str
 
     @property
     def path(self):
         return f"/blog/{self.slug}/"
+
+    @property
+    def url(self):
+        return self.external_url if self.kind == "external" else self.path
 
 
 def read_posts(root, today, drafts=False):
@@ -114,15 +122,36 @@ def read_posts(root, today, drafts=False):
         is_public = status == "published" and published <= today
         if not is_public and not drafts:
             continue
+        kind = attrs.get("data-type", "internal")
+        if kind not in {"internal", "external"}:
+            raise ValueError(f"{source.name}: data-type must be internal or external")
+        external_url = attrs.get("data-url", "").strip()
+        source_name = attrs.get("data-source", "").strip()
+        if kind == "external":
+            try:
+                parsed_url = urlsplit(external_url)
+                valid_url = (parsed_url.scheme in {"http", "https"} and parsed_url.hostname
+                             and not parsed_url.username and not parsed_url.password
+                             and not re.search(r"[\s\x00-\x1f\x7f\\]", external_url))
+                parsed_url.port  # Validate an optional port as well.
+            except ValueError:
+                valid_url = False
+            if not valid_url:
+                raise ValueError(f"{source.name}: data-url must be an absolute HTTP(S) URL without credentials")
+            source_name = source_name or parsed_url.hostname
+        elif external_url:
+            raise ValueError(f"{source.name}: data-url requires data-type=external")
         lang = attrs.get("lang", "en")
         if not re.fullmatch(r"[a-zA-Z]{2,8}(?:-[a-zA-Z0-9]{1,8})*", lang):
             raise ValueError(f"{source.name}: invalid language code")
         body = parser.source[parser.start:parser.end].strip()
-        if not body or not parser.words:
+        if kind == "internal" and (not body or not parser.words):
             raise ValueError(f"{source.name}: article body is empty")
         cover = attrs.get("data-cover", "").strip()
         cover_alt = attrs.get("data-cover-alt", "").strip()
         cover_small = attrs.get("data-cover-small", "").strip()
+        if kind == "external" and not cover:
+            raise ValueError(f"{source.name}: external articles require data-cover")
         if cover and not cover_alt:
             raise ValueError(f"{source.name}: data-cover-alt is required with data-cover")
         if cover_small and not cover:
@@ -135,7 +164,8 @@ def read_posts(root, today, drafts=False):
                           attrs["data-description"].strip(), published, updated,
                           lang, [tag.strip() for tag in attrs.get("data-tags", "").split(",") if tag.strip()],
                           body, max(1, math.ceil(len(parser.words) / 220)), is_public,
-                          cover, cover_alt, cover_small, attrs.get("data-cover-caption", "").strip()))
+                          cover, cover_alt, cover_small, attrs.get("data-cover-caption", "").strip(),
+                          kind, external_url, source_name))
     return sorted(posts, key=lambda post: (post.published, post.slug), reverse=True)
 
 
@@ -157,6 +187,9 @@ def build(root=ROOT, *, today=None, drafts=False):
     today = today or datetime.now(timezone.utc).date()
     posts = read_posts(root, today, drafts)
     home = (root / "index.html").read_text(encoding="utf-8")
+    # Render the same count without JavaScript; the browser refreshes it on visits.
+    career_start_year = int(re.search(r'data-career-start-year="(\d{4})"', home)[1])
+    home = home.replace("{{experience_years}}", str(max(0, today.year - career_start_year)))
     if home.count(NAV_MARKER) != 1:
         raise ValueError("index.html must contain exactly one <!-- BLOG_NAV --> marker")
     blog_link = '<a href="/blog/">Blog</a>' if posts else ""
@@ -182,24 +215,29 @@ def build(root=ROOT, *, today=None, drafts=False):
     entries = []
     for post in posts:
         tags = "".join(f'<span>{escape(tag)}</span>' for tag in post.tags)
+        destination = escape(post.url, quote=True)
+        entry_detail = (f'{escape(post.source_name)} ↗' if post.kind == "external"
+                        else f'{post.reading_time} min read')
         cover = thumbnail = ""
         if post.cover:
             responsive = (f' srcset="{escape(post.cover_small)} 600w, {escape(post.cover)} 1200w"'
                           if post.cover_small else "")
             image = f'<img src="{escape(post.cover)}"{responsive} width="1200" height="800" decoding="async"'
-            thumbnail = (f'<a class="entry-cover" href="{post.path}" tabindex="-1" aria-hidden="true">'
+            thumbnail = (f'<a class="entry-cover" href="{destination}" tabindex="-1" aria-hidden="true">'
                          f'{image} sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 992px) 280px, 360px" alt="" loading="lazy" /></a>')
             caption = f'<figcaption>{escape(post.cover_caption)}</figcaption>' if post.cover_caption else ""
             cover = (f'<figure class="article-cover">{image} '
                      f'sizes="(max-width: 992px) 100vw, 920px" alt="{escape(post.cover_alt)}" '
                      f'loading="eager" fetchpriority="high" />{caption}</figure>')
         notice = '<p class="draft-notice">Draft preview — not published</p>' if not post.is_public else ""
-        entries.append(f'''<article class="blog-entry{' blog-entry--with-cover' if post.cover else ''}">
+        entries.append(f'''<article class="blog-entry{' blog-entry--with-cover' if post.cover else ''}{' blog-entry--external' if post.kind == 'external' else ''}">
           {thumbnail}<div class="entry-details">
-          <div class="entry-date"><time datetime="{post.published}">{display_date(post.published)}</time><span>{post.reading_time} min read</span></div>
+          <div class="entry-date"><time datetime="{post.published}">{display_date(post.published)}</time><span>{entry_detail}</span></div>
           <div class="entry-content">{notice}<div class="article-topics">{tags}</div>
-            <h2><a href="{post.path}">{escape(post.title)} <span aria-hidden="true">↗</span></a></h2>
+            <h2><a href="{destination}">{escape(post.title)} <span aria-hidden="true">↗</span></a></h2>
             <p>{escape(post.description)}</p></div></div></article>''')
+        if post.kind == "external":
+            continue
         updated = (f'<span>Updated <time datetime="{post.updated}">{display_date(post.updated)}</time></span>'
                    if post.updated != post.published else "")
         article = render(root, "article.html", title=escape(post.title), description=escape(post.description),
@@ -232,7 +270,7 @@ def build(root=ROOT, *, today=None, drafts=False):
     public_posts = [post for post in posts if post.is_public]
     if public_posts and not drafts:
         paths.append(("/blog/", max(post.updated for post in public_posts)))
-        paths.extend((post.path, post.updated) for post in public_posts)
+        paths.extend((post.path, post.updated) for post in public_posts if post.kind == "internal")
     for path, updated in paths:
         url = ET.SubElement(sitemap, "url")
         ET.SubElement(url, "loc").text = SITE + path

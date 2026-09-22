@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Maksim Lysakou | AI-Driven Product Engineer & Technical Lead</title>
+    <title>Maksim Lysakou | Senior Fullstack Developer & Technical Lead | CV</title>
     <meta
       name="description"
-      content="8 years of shipping across stacks. Now using AI to build faster — and product thinking to build right. Meet Maksim Lysakou, Product Engineer & Technical Lead."
+      content="Maksim Lysakou — Senior Fullstack Developer and Technical Lead. Building software since January 2017. React, TypeScript, Node.js, React Native. Experience, projects and CV."
     />
     <meta name="theme-color" content="#f6f5f1" />
     <link rel="canonical" href="https://maksim.lysakou.dev/" />
@@ -14,18 +14,19 @@
     <meta property="og:type" content="website" />
     <meta
       property="og:title"
-      content="Maksim Lysakou | AI-Driven Product Engineer & Technical Lead"
+      content="Maksim Lysakou | Senior Fullstack Developer & Technical Lead | CV"
     />
     <meta
       property="og:description"
-      content="8 years of shipping across stacks. Now using AI to build faster — and product thinking to build right."
+      content="Senior Fullstack Developer and Technical Lead. Building web and mobile products and leading teams since January 2017. Explore my experience, projects and CV."
     />
     <meta property="og:url" content="https://maksim.lysakou.dev/" />
     <link rel="icon" href="./img/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/cv.css" />
     <script src="./js/main.js" defer></script>
   </head>
-  <body>
+  <body class="cv-page" data-career-start-year="2017">
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
       <nav class="nav container" aria-label="Main navigation">
@@ -42,9 +43,9 @@
           <span></span><span></span>
         </button>
         <div class="nav-menu" id="nav-menu">
-          <a href="#about">About</a><a href="#skills">Expertise</a
+          <a href="#about">Experience</a><a href="#skills">Stack</a
           ><a href="#startups">Projects</a
-          ><a href="#testimonials">Kind words</a>
+          ><a href="#contact">Contact</a>
           <!-- BLOG_NAV -->
           <a
             class="nav-cv"
@@ -55,230 +56,89 @@
       </nav>
     </header>
     <main id="main">
-      <section class="hero container" aria-labelledby="hero-title">
-        <div class="hero-copy">
-          <div class="eyebrow hero-intro">
-            <span class="status-dot"></span> ENGINEER BY CRAFT. BUILDER BY
-            NATURE.
-          </div>
-          <h1 id="hero-title">
-            Good ideas.<br />Great products.<br /><span class="accent"
-              >Built to matter.</span
-            >
-          </h1>
-          <p class="hero-role">AI-Driven Product Engineer & Technical Lead</p>
-          <p class="hero-description">
-            8 years of shipping across stacks. Now using AI to build faster —
-            and product thinking to build right.
-          </p>
+      <section class="cv-hero container" aria-labelledby="hero-title">
+        <div class="cv-intro">
+          <p class="eyebrow cv-eyebrow"><span aria-hidden="true">&lt;/&gt;</span> SOFTWARE DEVELOPER · CURRICULUM VITAE</p>
+          <h1 id="hero-title">Maksim<br /> Lysakou<span class="accent">.</span></h1>
+          <p class="cv-role">Senior Fullstack Developer<br /> <span>&amp; Technical Lead</span></p>
+          <p class="cv-summary"><span data-experience-years>{{experience_years}}</span>+ years building web and mobile products, leading teams, and taking ideas from first commit to production.</p>
+          <ul class="cv-primary-stack" aria-label="Primary technologies">
+            <li>TypeScript</li><li>React</li><li>Node.js</li><li>React Native</li>
+          </ul>
           <div class="hero-actions">
-            <a class="button button-dark" href="#startups"
-              >Explore my work <span aria-hidden="true">↗</span></a
-            ><a class="text-link" href="mailto:maksim.lysakou@gmail.com"
-              >Let’s talk <span aria-hidden="true">↗</span></a
-            >
+            <a class="button button-dark" href="https://docs.google.com/document/d/17PLq-vkRgQ2En97vbget6dQR9l6m7Hdn4vMjMVvX5Mo/export?format=docx">Download CV <span aria-hidden="true">↓</span></a>
+            <a class="button cv-button-outline" href="mailto:maksim.lysakou@gmail.com">Get in touch <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="cv-profile-links">
+            <a href="https://linkedin.com/in/maksim-lysakou/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+            <span aria-hidden="true">/</span>
+            <a href="https://t.me/HyperNovaRemnant" target="_blank" rel="noopener noreferrer">Telegram ↗</a>
           </div>
         </div>
-        <div class="hero-art" id="hero-art">
-          <div class="art-grid" aria-hidden="true"></div>
-          <div class="orbit orbit-one" aria-hidden="true"></div>
-          <div class="orbit orbit-two" aria-hidden="true"></div>
-          <div class="sculpture-fallback" aria-hidden="true"></div>
-          <canvas id="hero-canvas" aria-hidden="true"></canvas>
-          <span class="art-cross cross-top" aria-hidden="true">+</span
-          ><span class="art-cross cross-bottom" aria-hidden="true">+</span>
-          <div class="art-note note-top">
-            <span class="tiny-square"></span> HUMAN INTUITION<br /><span
-              class="note-indent"
-              >× MACHINE INTELLIGENCE</span
-            >
-          </div>
-          <div class="art-caption">
-            <span class="status-dot"></span> ALWAYS IN THE MAKING
-          </div>
-          <button
-            class="motion-toggle"
-            id="motion-toggle"
-            aria-label="Pause 3D animation"
-            aria-pressed="false"
-            hidden
-          >
-            <span aria-hidden="true">Ⅱ</span>
-          </button>
-        </div>
-        <div class="hero-bottom">
-          <a href="#about" class="scroll-link"
-            ><span aria-hidden="true">↓</span> A little more about me</a
-          ><span class="eyebrow"
-            >THOUGHTFUL ENGINEERING. REAL-WORLD IMPACT.</span
-          >
-        </div>
+        <aside class="cv-profile" aria-label="Profile">
+          <img class="cv-portrait" src="./img/maksim.png" alt="Maksim Lysakou" width="680" height="850" fetchpriority="high" />
+          <div class="cv-profile-caption"><span>Maksim Lysakou</span><span class="eyebrow">DEVELOPER &amp; LEAD</span></div>
+          <div class="cv-profile-note"><span aria-hidden="true">↳</span> Engineering depth.<br />A product mindset.</div>
+        </aside>
       </section>
-      <div class="discipline-strip" aria-label="Focus areas">
-        <div class="container">
-          <span>Fullstack engineering</span
-          ><span class="asterisk" aria-hidden="true">✳</span
-          ><span>AI-driven building</span
-          ><span class="asterisk" aria-hidden="true">✳</span
-          ><span>Product thinking</span
-          ><span class="asterisk" aria-hidden="true">✳</span
-          ><span>Technical leadership</span>
-        </div>
+      <div class="cv-highlights container" aria-label="Career highlights">
+        <div><strong><span data-experience-years>{{experience_years}}</span>+</strong><span>Years in software<br />development</span></div>
+        <div><strong>10+</strong><span>Developers mentored<br />to senior</span></div>
+        <div><strong>2+</strong><span>Teams guided<br />end-to-end</span></div>
+        <a href="#about">Explore my experience <span aria-hidden="true">↓</span></a>
       </div>
-      <section class="about section container" id="about">
-        <div class="section-label reveal">
-          <span class="section-number">01 /</span> THE PERSON BEHIND THE CODE
+      <section class="cv-section container" id="about" aria-labelledby="experience-title">
+        <div class="cv-section-aside">
+          <p class="section-label"><span class="section-number">01 /</span> EXPERIENCE</p>
+          <h2 id="experience-title">From code<br /> to ownership.</h2>
+          <p>Full stack experience across startups, enterprise products and independent projects.</p>
+          <a class="text-link" href="https://docs.google.com/document/d/17PLq-vkRgQ2En97vbget6dQR9l6m7Hdn4vMjMVvX5Mo/export?format=docx">Full work history in my CV <span aria-hidden="true">↗</span></a>
         </div>
-        <div class="about-grid">
-          <div class="reveal">
-            <div class="hello-avatar">
-              <img
-                src="./img/avataaars.svg"
-                alt="Illustrated portrait of Maksim"
-                width="74"
-                height="74"
-              /><span>Hello there <span aria-hidden="true">↗</span></span>
-            </div>
-            <h2>
-              Hi, I’m Maksim.<br />Nice to <span class="serif">meet you.</span>
-            </h2>
-          </div>
-          <div class="about-copy reveal">
-            <p>
-              Over 8 years I’ve shipped across the full stack — backend,
-              frontend, mobile, leadership, presales, startups and legacy
-              rescues.
-            </p>
-            <p>
-              After seeing what really moves the needle, I doubled down on two
-              multipliers:
-              <strong
-                >AI to build MVPs and production code at a fraction of the
-                time</strong
-              >, and a product lens to make sure what we ship actually moves the
-              business.
-            </p>
-            <p>
-              My senior engineering background keeps AI-generated code honest —
-              readable, tested, and ready for prod.
-            </p>
-          </div>
-        </div>
-        <div class="stats reveal">
-          <div>
-            <strong>8<span>+</span></strong
-            ><span>Years of shipping</span>
-          </div>
-          <div>
-            <strong>10<span>+</span></strong
-            ><span>Developers mentored to senior</span>
-          </div>
-          <div>
-            <strong>2<span>+</span></strong
-            ><span>Teams guided end-to-end</span>
-          </div>
-          <div>
-            <strong>100<span>+</span></strong
-            ><span>Project interviews & presales</span>
-          </div>
+        <div class="cv-experience-list">
+          <article class="cv-experience">
+            <div class="cv-experience-heading"><h3>Fullstack development</h3><span class="eyebrow">WEB &amp; MOBILE</span></div>
+            <p>I build across the frontend, backend and mobile — from new products to existing systems that need a fresh start.</p>
+            <ul><li>Web applications with React, Next.js and TypeScript.</li><li>Backend services and APIs with Node.js, SQL and NoSQL databases.</li><li>Cross-platform mobile apps with React Native; maintenance and recovery of legacy products.</li></ul>
+          </article>
+          <article class="cv-experience">
+            <div class="cv-experience-heading"><h3>Technical leadership</h3><span class="eyebrow">PEOPLE &amp; DELIVERY</span></div>
+            <p>Hands-on engineering with responsibility for architecture, code quality and the people building the product.</p>
+            <ul><li>10+ developers mentored to senior level.</li><li>2+ teams guided through product delivery end-to-end.</li><li>100+ project interviews and presales engagements.</li></ul>
+          </article>
+          <article class="cv-experience">
+            <div class="cv-experience-heading"><h3>AI &amp; product engineering</h3><span class="eyebrow">CURRENT FOCUS</span></div>
+            <p>I use AI to accelerate delivery, with engineering judgment to keep the result readable, tested and ready for production.</p>
+            <ul><li>MVPs, AI product features and internal automation.</li><li>Agentic workflows, tool use, evaluations and prompt iteration.</li><li>Product decisions informed by business needs.</li></ul>
+          </article>
         </div>
       </section>
-      <section class="expertise section" id="skills">
-        <div class="container">
-          <div class="section-label reveal">
-            <span class="section-number">02 /</span> HOW I MAKE THINGS HAPPEN
+      <section class="cv-stack-section" id="skills" aria-labelledby="stack-title">
+        <div class="cv-section container">
+          <div class="cv-section-aside">
+            <p class="section-label"><span class="section-number">02 /</span> TECH STACK</p>
+            <h2 id="stack-title">Tools of<br /> the trade.</h2>
+            <p>The technologies I use to build, ship and maintain products.</p>
           </div>
-          <div class="section-heading reveal">
-            <h2>Depth meets <span class="serif">possibility.</span></h2>
-            <p>
-              Engineering experience. AI as a multiplier.<br />A product lens to
-              connect it all.
-            </p>
-          </div>
-          <div class="expertise-grid">
-            <article class="expertise-card reveal">
-              <div class="card-top">
-                <span class="expertise-icon" aria-hidden="true">〈/〉</span
-                ><span class="eyebrow">01</span>
-              </div>
-              <h3>Senior Fullstack<br />Engineer</h3>
-              <p>
-                Backend, frontend, mobile, legacy rescues — I’ve shipped them
-                all. This depth is what keeps AI-generated code honest.
-              </p>
-              <h4>STACK I WORK WITH</h4>
-              <div class="tags">
-                <span>React.js</span><span>Next.js</span
-                ><span>React Native</span><span>Node.js</span
-                ><span>Express.js</span><span>GraphQL</span><span>REST API</span
-                ><span>PostgreSQL</span><span>MongoDB</span
-                ><span>TypeScript</span><span>JavaScript</span
-                ><span>Docker</span><span>Git</span>
-              </div>
-            </article>
-            <article class="expertise-card reveal">
-              <div class="card-top">
-                <span class="expertise-icon" aria-hidden="true">✳</span
-                ><span class="eyebrow">02</span>
-              </div>
-              <h3>AI-Driven<br />Builder</h3>
-              <p>
-                I use AI to compress weeks into days — shipping MVPs, AI
-                features and agentic workflows on top of the latest frontier
-                models.
-              </p>
-              <h4>MODELS & TOOLS I USE DAILY</h4>
-              <ul class="detail-list">
-                <li>Claude Fable / Opus</li>
-                <li>GPT-6, OpenAI API</li>
-                <li>Claude Code, Cursor</li>
-                <li>Agentic flows & tool use</li>
-                <li>Evals & prompt iteration</li>
-              </ul>
-              <div class="card-foot">
-                <h4>WHAT I BUILD</h4>
-                <p>MVPs, AI product features, internal automation</p>
-              </div>
-            </article>
-            <article class="expertise-card reveal">
-              <div class="card-top">
-                <span class="expertise-icon" aria-hidden="true">↗</span
-                ><span class="eyebrow">03</span>
-              </div>
-              <h3>Product Thinking<br />& Leadership</h3>
-              <p>
-                I lead teams, run presales, and use a product lens to make sure
-                engineering effort lands where the business actually wins.
-              </p>
-              <h4>TRACK RECORD</h4>
-              <ul class="detail-list">
-                <li>Tech Lead across multiple products</li>
-                <li>10+ developers mentored to senior</li>
-                <li>2+ teams guided end-to-end</li>
-                <li>100+ project interviews & presales</li>
-              </ul>
-              <div class="card-foot">
-                <h4>WHERE I HELP</h4>
-                <p>
-                  Product strategy, architecture, code quality, team leadership
-                </p>
-              </div>
-            </article>
-          </div>
+          <dl class="cv-stack-list">
+            <div><dt>Frontend</dt><dd>React · Next.js · TypeScript · JavaScript</dd></div>
+            <div><dt>Backend</dt><dd>Node.js · Express.js · REST APIs · GraphQL</dd></div>
+            <div><dt>Mobile</dt><dd>React Native</dd></div>
+            <div><dt>Data &amp; tooling</dt><dd>PostgreSQL · MongoDB · Docker · Git</dd></div>
+            <div><dt>AI development</dt><dd>Claude · OpenAI API · Claude Code · Cursor<br /><span>Agentic workflows · Evals · Prompt iteration</span></dd></div>
+          </dl>
         </div>
       </section>
       <section class="projects section container" id="startups">
         <div class="section-label reveal">
-          <span class="section-number">03 /</span> FROM IDEA TO SOMETHING REAL
+          <span class="section-number">03 /</span> SELECTED PROJECTS
         </div>
         <div class="section-heading reveal">
-          <h2>Things I’m <span class="serif">building.</span></h2>
+          <h2>Built by me<span class="accent">.</span></h2>
           <span class="eyebrow">INDEPENDENT PROJECTS / 01—03</span>
         </div>
         <p class="section-description reveal">
-          After years of shipping for startups and enterprises, I started
-          building my own — using AI as a force-multiplier to take ideas from
-          sketch to production in a fraction of the usual time.
+          Independent projects where I own the product and the engineering,
+          from the initial idea to implementation.
         </p>
         <div class="project-grid">
           <article class="project-card reveal">
@@ -394,11 +254,11 @@
       <section class="testimonials section" id="testimonials">
         <div class="container">
           <div class="section-label reveal">
-            <span class="section-number">04 /</span> GOOD WORK IS A TEAM SPORT
+            <span class="section-number">04 /</span> RECOMMENDATIONS
           </div>
           <div class="section-heading reveal">
-            <h2>A few <span class="serif">kind words.</span></h2>
-            <p>People I’ve worked with<br />have said some nice things...</p>
+            <h2>From people I’ve worked with<span class="accent">.</span></h2>
+            <p>Colleagues on my work,<br />collaboration and ownership.</p>
           </div>
           <div class="testimonial-layout reveal">
             <div class="quote-mark" aria-hidden="true">“</div>
@@ -509,37 +369,21 @@
           </div>
         </div>
       </section>
-      <section class="contact section container" id="contact">
-        <div class="section-label reveal">
-          <span class="section-number">05 /</span> LET’S BUILD SOMETHING THAT
-          MATTERS
+      <section class="cv-contact container" id="contact" aria-labelledby="contact-title">
+        <div>
+          <p class="section-label"><span class="section-number">05 /</span> CONTACT</p>
+          <h2 id="contact-title">Let’s work together<span class="accent">.</span></h2>
+          <p>Have a role or a project in mind? Let’s talk.</p>
+          <a class="cv-contact-email" href="mailto:maksim.lysakou@gmail.com">maksim.lysakou@gmail.com <span aria-hidden="true">↗</span></a>
         </div>
-        <div class="contact-main reveal">
-          <h2>
-            Your next chapter.<br /><span class="serif">Let’s build it.</span>
-          </h2>
-          <a
-            class="contact-arrow"
-            href="mailto:maksim.lysakou@gmail.com"
-            aria-label="Email Maksim"
-            ><span aria-hidden="true">↗</span></a
-          >
-        </div>
-        <div class="contact-bottom reveal">
-          <p>
-            Building with AI, leading with product,<br />shipping with intent.
-          </p>
-          <a class="email-link" href="mailto:maksim.lysakou@gmail.com"
-            >maksim.lysakou@gmail.com <span aria-hidden="true">↗</span></a
-          >
-        </div>
+        <a class="button button-dark" href="https://docs.google.com/document/d/17PLq-vkRgQ2En97vbget6dQR9l6m7Hdn4vMjMVvX5Mo/export?format=docx">Download CV <span aria-hidden="true">↓</span></a>
       </section>
     </main>
     <footer class="footer container">
       <a class="wordmark" href="#"
         ><span class="brand-symbol" aria-hidden="true">m<span>l</span>.</span
         ><span>Maksim Lysakou</span></a
-      ><span class="footer-note">BUILT WITH INTENT.</span>
+      ><span class="footer-note">FULLSTACK DEVELOPER &amp; TECH LEAD</span>
       <div class="social-links">
         <a
           href="https://t.me/HyperNovaRemnant"

@@ -1,3 +1,12 @@
+// Refresh on each visit, even when the static site has not been rebuilt this year.
+const careerStartYear = Number(document.body.dataset.careerStartYear);
+if (Number.isInteger(careerStartYear) && careerStartYear > 0) {
+  const experienceYears = Math.max(0, new Date().getUTCFullYear() - careerStartYear);
+  document.querySelectorAll("[data-experience-years]").forEach((element) => {
+    element.textContent = String(experienceYears);
+  });
+}
+
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const menuToggle = document.querySelector(".menu-toggle");
 const menu = document.querySelector("#nav-menu");
@@ -75,28 +84,3 @@ if (document.querySelector("#testimonials-content")) {
     .addEventListener("click", () => showTestimonial(activeTestimonial + 1));
   showTestimonial(0);
 }
-
-// Keep the page functional even if WebGL or the optional scene cannot load.
-let heroRequested = false;
-function loadHero() {
-  if (
-    !document.querySelector("#hero-canvas") ||
-    mobileViewport.matches ||
-    heroRequested
-  )
-    return;
-  heroRequested = true;
-  import("./hero.js")
-    .then(({ initHero }) => {
-      if (mobileViewport.matches) {
-        heroRequested = false;
-        return;
-      }
-      initHero(reducedMotion);
-    })
-    .catch(() => {
-      heroRequested = false;
-    });
-}
-mobileViewport.addEventListener("change", loadHero);
-loadHero();
